@@ -1,8 +1,8 @@
 from tkinter import *
-import time
+import time#module
 import numpy as np
 from PIL import ImageTk, Image
-import random
+import random#module
 from tkinter import messagebox
 import os.path
 menu_data = np.genfromtxt('Menu.csv',delimiter = ',',skip_header=1)
@@ -77,12 +77,18 @@ def calculate():
     cus_num = e14.get()
     if cus_num=="" or len(cus_num)!=10:
         messagebox.showerror('Error', 'Please enter valid Phone no')
-        return 
+        return
+    try :
+        pno = int(cus_num)
+    except:
+        messagebox.showerror('Error', 'Please enter valid Phone no')
+        e14.set("")
+        return
     try:
         m = int(m1)+int(m2)+int(m3)+int(m4)+int(m5)+int(m6)+int(m7)+int(m8)+int(m9)+int(m10)+int(m11)+int(m12)
         total = (int(m1) * menu[0] + int(m2) * menu[1] + int(m3) * menu[2] + int(m4) * menu[3] + int(m5) * menu[4] + int(m6) * menu[5] + int(m7) * menu[6] + int(m8) * menu[7] + int(m9) * menu[8] + int(m10) * menu[9] + int(m11) * menu[10] + int(m12) * menu[11])
         e15.set(str(total))
-        if m==0:
+        if m<=0:
             messagebox.showerror('No values', 'Please enter values')
             return 
         
@@ -95,9 +101,9 @@ def calculate():
             f.place(x=45, y=20, width=550, height=660)
             f.configure(bg="mistyrose4")
 
-            bt = Label(f, text="BILL RECIEPT", font="arial 15 bold", bd=7).pack(fill=X)
+            bt = Label(f, text="BILL RECIEPT", font="arial 15 bold", bd=7).pack()
             text = Text(f,font = 'arial 15 bold')
-            text.pack(fill=BOTH)
+            text.pack()
             name = str(e13.get())+str(random.randint(100,300))
             def file_save():
                 if(os.path.isfile(name)):
@@ -267,7 +273,18 @@ def calculate():
         bill_reciept()
     except:
         messagebox.showerror('Error', 'Please enter integers only')
-        Reset()
+        e1.set("")
+        e2.set("")
+        e3.set("")
+        e4.set("")
+        e5.set("")
+        e6.set("")
+        e7.set("")
+        e8.set("")
+        e9.set("")
+        e10.set("")
+        e11.set("")
+        e12.set("")
         
 def Reset():
     e1.set("")
